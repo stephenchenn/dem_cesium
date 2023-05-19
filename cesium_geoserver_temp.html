@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5YTQyNmJjNS1mNjVkLTRhMDUtYmFmNy04NjcyMTJhNzhhYmQiLCJpZCI6MTM0MDMyLCJpYXQiOjE2ODE3MDgzNjd9.dQc1cISeFMcwAdutcbLCXaxzJXUwHRapopQKf3Q7aMY';
+
+
+    const viewer = new Cesium.Viewer("cesiumContainer", {
+      terrainProvider: new Cesium.CesiumTerrainProvider({
+        url: Cesium.IonResource.fromAssetId(1701499),
+      }),
+    });
+
+    // Fly the camera to San Francisco at the given longitude, latitude, and height.
+    viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(147.3261959662107, -42.87998121832776, 5000),
+      orientation: {
+        heading: Cesium.Math.toRadians(0.0),
+        pitch: Cesium.Math.toRadians(-50.0),
+      }
+    });
+  </script>
+  </div>
+</body>
+
+</html>
