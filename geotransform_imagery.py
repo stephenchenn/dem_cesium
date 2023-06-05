@@ -1,13 +1,13 @@
 from osgeo import gdal, osr
 import os
 
-for filename in os.listdir('terrain_orientation_fixed'):
-    if filename.endswith(".tif"):
-        dataset = gdal.Open(os.path.join("terrain_orientation_fixed", filename))
+for filename in os.listdir('imagery'):
+    if filename.endswith(".png"):
+        dataset = gdal.Open(os.path.join("imagery", filename))
 
         tileindex = (filename.split("-")[-1]).split(".")[-2]
 
-        with open(os.path.join("tas_pgws", "TasNetworksProcessedFiles_Ortho_RGB_Orthophoto_ortho_TasNetworks_Tile-" + tileindex + ".pgw")) as f:
+        with open(os.path.join("tas_pgws_imagery", "TasNetworksProcessedFiles_Ortho_RGB_Orthophoto_ortho_TasNetworks_Tile-" + tileindex + ".pgw")) as f:
             lines = f.readlines()
             geotransform = tuple(map(float, lines))
             geotransform = ([geotransform[4], geotransform[0], geotransform[1], geotransform[5], geotransform[2], geotransform[3]])
